@@ -3,6 +3,8 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./components/Login";
 import Users from "./pages/Users.jsx";
 import Menus from "./pages/Menus.jsx";
+import Blog from "./pages/Blog";
+import AddBlog from "./pages/AddBlog";
 import AddUser from "./pages/AddUser.jsx";
 import EditUser from "./pages/EditUser.jsx";
 import AddMenu from "./pages/AddMenu.jsx";
@@ -21,6 +23,8 @@ function App() {
           <Route path="/menus" element={<Menus />} />
           <Route path="/menus/add" element={<AddMenu />} />
           <Route path="/menus/edit/:id" element={<EditMenu />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/add" element={<AddBlog />} />
         </Routes>
       </BrowserRouter>
     </div>
