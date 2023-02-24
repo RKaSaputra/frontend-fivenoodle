@@ -1,8 +1,8 @@
-import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout, reset } from "../features/authSlice";
+import React from "react";
+import logo from "../logo1.png";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -22,11 +22,11 @@ const Navbar = () => {
         aria-label="main navigation"
       >
         <div className="navbar-brand">
-          <NavLink to="/dashboard" className="navbar-item">
-            <img src={logo} width="112" height="28" alt="logo" />
+          <NavLink to="/dashboard" className="navbar-item ml-3">
+            <img className="is-fullwidth" src={logo} alt="logo" />
           </NavLink>
-    
-        <a
+
+          <a
             href="!#"
             role="button"
             className="navbar-burger burger"
@@ -39,12 +39,12 @@ const Navbar = () => {
             <span aria-hidden="true"></span>
           </a>
         </div>
-    
-      <div id="navbarBasicExample" className="navbar-menu">
+
+        <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <button onClick={logout} className="button is-light">
+                <button onClick={logout} className="button is-danger is-light">
                   Log out
                 </button>
               </div>

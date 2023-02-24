@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { IoPerson, IoPricetag, IoHome, IoLogOut } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout, reset } from "../features/authSlice";
 
@@ -15,27 +16,37 @@ const Sidebar = () => {
   };
   return (
     <div>
-    <aside className="menu pl-2 has-shadow">
-      <p className="menu-label">General</p>
-      <ul className="menu-list">
-        <li>
-          <NavLink to={"/dashboard"}>
-            Dashboard
-          </NavLink>
-        </li>
-          <li><NavLink to={"/menu"} >Menu</NavLink></li>
-          <li><NavLink to={"/users"} >Users</NavLink></li>
-        </ul>
-        
-        <p className="menu-label">
-          Settings
-        </p>
+      <aside className="menu pt-4 pl-4 has-shadow">
+        <p className="menu-label">General</p>
         <ul className="menu-list">
-          <li><button onClick={logout} className='button is-white'>Logout</button></li>
+          <li>
+            <NavLink to={"/dashboard"}>
+              <IoHome className="mr-1" /> Dashboard
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/menus"}>
+              <IoPricetag className="mr-2" /> Menu
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/users"}>
+              <IoPerson className="mr-2" /> Users
+            </NavLink>
+          </li>
+        </ul>
+
+        <p className="menu-label">Settings</p>
+        <ul className="menu-list">
+          <li>
+            <button onClick={logout} className="button is-danger is-light">
+              <IoLogOut className="mr-2" /> Logout
+            </button>
+          </li>
         </ul>
       </aside>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
