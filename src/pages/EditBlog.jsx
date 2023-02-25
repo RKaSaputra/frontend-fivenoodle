@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import Layout from "./Layout";
-import Welcome from "../components/Welcome";
+import FormEditBlog from "../components/FormEditBlog";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMe } from "../features/authSlice";
+import { getMe } from "../features/authSlice.js";
 
-const Dashboard = () => {
+const EditBlog = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
@@ -22,9 +22,9 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <Welcome />
+      <FormEditBlog />
     </Layout>
   );
 };
 
-export default Dashboard;
+export default EditBlog;

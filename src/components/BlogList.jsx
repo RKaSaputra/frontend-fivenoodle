@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import logo from "../logo.png";
 import axios from "axios";
 
 function BlogList() {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState([
+    {
+      id: 1,
+      Nama: "Boba Masa Kini",
+      Deskripsi:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem tempore dolorem, cumque molestias aliquid iste distinctio hic quos explicabo enim deserunt modi, doloremque voluptatem totam voluptas debitis dolore nam fugiat.",
+      img: logo,
+      "blog_category.Nama": "Dessert",
+    },
+  ]);
   const [blogsCategory, setBlogCategoty] = useState([]);
 
   useEffect(() => {
     getBlogs();
     getBlogCategoty();
-    console.log(blogsCategory);
+    // console.log(blogsCategory);
   }, []);
 
   const getBlogs = async () => {
@@ -51,8 +61,13 @@ function BlogList() {
               <td>{index + 1}</td>
               <td>{blog.Nama}</td>
               <td>{blog.Deskripsi}</td>
-              <td>{blog.img}</td>
-              <td>{blog.blog_category.Nama}</td>
+              <td>
+                <img
+                  src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
+                  alt=""
+                />
+              </td>
+              <td>Dessert</td>
               {/* <td>{blog.}</td> */}
               <td>
                 <Link
@@ -62,7 +77,7 @@ function BlogList() {
                   Edit
                 </Link>
                 <button
-                  onClick={() => getBlogCategoty(blog.id)}
+                  onClick={() => deleteBlog(blog.id)}
                   className="button is-small is-danger"
                 >
                   Delete
