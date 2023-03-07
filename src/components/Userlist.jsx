@@ -31,8 +31,6 @@ const UserList = () => {
           <tr>
             <th>No</th>
             <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -40,9 +38,7 @@ const UserList = () => {
           {users.map((user, index) => (
             <tr key={user.uuid}>
               <td>{index + 1}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td className="is-uppercase">{user.role}</td>
+              <td>{user.username}</td>
               <td>
                 <Link
                   to={`/users/edit/${user.uuid}`}

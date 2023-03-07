@@ -3,11 +3,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const FormAddUser = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
-  const [role, setRole] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
@@ -15,11 +13,9 @@ const FormAddUser = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:5000/users", {
-        name: name,
-        email: email,
+        username: username,
         password: password,
         confPassword: confPassword,
-        role: role,
       });
       navigate("/users");
     } catch (error) {
@@ -39,26 +35,14 @@ const FormAddUser = () => {
             <form onSubmit={saveUser}>
               <p className="has-text-centered has-text-danger">{msg}</p>
               <div className="field">
-                <label className="label">Name</label>
+                <label className="label">Username</label>
                 <div className="control">
                   <input
                     type="text"
                     className="input"
                     placeholder="John Doe"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Email</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    placeholder="example@mail.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                 </div>
               </div>
@@ -86,20 +70,7 @@ const FormAddUser = () => {
                   />
                 </div>
               </div>
-              <div className="field">
-                <label className="label">Role</label>
-                <div className="control">
-                  <div className="select is-fullwidth">
-                    <select
-                      value={role}
-                      onChange={(e) => setRole(e.target.value)}
-                    >
-                      <option value="admin">Admin</option>
-                      <option value="user">User</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
+              
               <div className="field">
                 <div className="control">
                   <button type="submit" className="button px-6 mt-6 is-success">
