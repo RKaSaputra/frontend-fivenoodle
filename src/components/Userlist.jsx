@@ -30,7 +30,7 @@ const UserList = () => {
         <thead>
           <tr>
             <th>No</th>
-            <th>Name</th>
+            <th>Username</th>
             <th>Action</th>
           </tr>
         </thead>
