@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 function MenuList() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([
+    // {
+    //   name: "Noodle",
+    //   price: 3030,
+    //   user: {
+    //     name: "Prabu",
+    //   },
+    // },
+  ]);
 
   useEffect(() => {
     getProducts();
@@ -23,7 +31,7 @@ function MenuList() {
     <div className="box mt-3 mr-3">
       <h1 className="title">Menu Table</h1>
       <h2 className="subtitle">List of Menu</h2>
-      <Link to="/products/add" className="button is-primary mb-3">
+      <Link to="/menus/add" className="button is-primary mb-3">
         Add New
       </Link>
       <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -45,7 +53,7 @@ function MenuList() {
               <td>{product.user.name}</td>
               <td>
                 <Link
-                  to={`/products/edit/${product.uuid}`}
+                  to={`/menus/edit/${product.uuid}`}
                   className="button is-small is-info mr-3"
                 >
                   Edit
