@@ -4,7 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const FormEditMenu = () => {
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+  const [calories, setCalories] = useState("");
+  const [rating, setRating] = useState("");
+  const [nutriScore, setNutriScore] = useState("");
+  const [img, setImg] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
@@ -14,7 +17,10 @@ const FormEditMenu = () => {
       try {
         const response = await axios.get(`http://localhost:5000/menus/${id}`); // koreksi
         setName(response.data.name);
-        setPrice(response.data.price);
+        setCalories(response.data.calories);
+        setRating(response.data.rating);
+        setNutriScore(response.data.nutriScore);
+        setImg(response.data.img);
       } catch (error) {
         if (error.response) {
           setMsg(error.response.data.msg);
@@ -29,10 +35,13 @@ const FormEditMenu = () => {
     try {
       await axios.patch(`http://localhost:5000/menus/${id}`, {
         // koreksi
-        name: name,
-        price: price,
+        name,
+        calories,
+        rating,
+        nutriScore,
+        img,
       });
-      navigate("/products");
+      navigate("/menus");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
@@ -62,14 +71,50 @@ const FormEditMenu = () => {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Price</label>
+                <label className="label">Calories</label>
                 <div className="control">
                   <input
                     type="text"
                     className="input"
-                    placeholder="Price"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder="Calories"
+                    value={calories}
+                    onChange={(e) => setCalories(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Rating</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    placeholder="Rating"
+                    value={rating}
+                    onChange={(e) => setRating(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Nutri Score</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    placeholder="Nutri Score"
+                    value={nutriScore}
+                    onChange={(e) => setNutriScore(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label ">Image</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    type="file"
+                    name="image"
+                    value={img}
+                    onChange={(e) => setImg(e.target.value)}
                   />
                 </div>
               </div>

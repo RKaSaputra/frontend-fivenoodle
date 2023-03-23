@@ -9,8 +9,8 @@ function BlogList() {
       id: 1,
       Nama: "Boba Masa Kini",
       Deskripsi:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem tempore dolorem, cumque molestias aliquid iste distinctio hic quos explicabo enim deserunt modi, doloremque voluptatem totam voluptas debitis dolore nam fugiat.",
-      img: logo,
+        "Tren minuman boba dewasa ini menjadi daya tarik tersendiri bagi banyak orang, khususnya kaum milenial. Boba atau bubble yang lazimnya dijadikan topping buat minuman seperti milk tea, thai tea, coklat, dan lainnya, bahkan kini sudah jadi gaya hidup bagi kaum muda di manapun berada.",
+      img: "https://images.unsplash.com/photo-1592318730259-6f18a6ba1c29?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=407&q=80",
       "blog_category.Nama": "Dessert",
     },
   ]);
@@ -62,10 +62,7 @@ function BlogList() {
               <td>{blog.Nama}</td>
               <td>{blog.Deskripsi}</td>
               <td>
-                <img
-                  src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
-                  alt=""
-                />
+                <img src={blog.img} alt="" />
               </td>
               <td>Dessert</td>
               {/* <td>{blog.}</td> */}

@@ -4,13 +4,13 @@ import axios from "axios";
 
 function MenuList() {
   const [products, setProducts] = useState([
-    // {
-    //   name: "Noodle",
-    //   price: 3030,
-    //   user: {
-    //     name: "Prabu",
-    //   },
-    // },
+    {
+      name: "Noodle",
+      price: 3030,
+      user: {
+        name: "Prabu",
+      },
+    },
   ]);
 
   useEffect(() => {

@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 const FormAddMenu = () => {
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+  const [calories, setCalories] = useState("");
+  const [rating, setRating] = useState("");
+  const [nutriScore, setNutriScore] = useState("");
+  const [img, setImg] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
@@ -13,8 +16,11 @@ const FormAddMenu = () => {
     try {
       await axios.post("http://localhost:5000/menus", {
         // koreksi
-        name: name,
-        price: price,
+        name,
+        calories,
+        rating,
+        nutriScore,
+        img,
       });
       navigate("/products");
     } catch (error) {
@@ -46,14 +52,50 @@ const FormAddMenu = () => {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Price</label>
+                <label className="label">Calories</label>
                 <div className="control">
                   <input
                     type="text"
                     className="input"
-                    placeholder="Price"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder="Calories"
+                    value={calories}
+                    onChange={(e) => setCalories(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Rating</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    placeholder="Rating"
+                    value={rating}
+                    onChange={(e) => setRating(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Nutri Score</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    placeholder="Nutri Score"
+                    value={nutriScore}
+                    onChange={(e) => setNutriScore(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label ">Image</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    type="file"
+                    name="image"
+                    value={img}
+                    onChange={(e) => setImg(e.target.value)}
                   />
                 </div>
               </div>
