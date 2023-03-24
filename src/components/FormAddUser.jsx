@@ -40,7 +40,7 @@ const FormAddUser = () => {
                   <input
                     type="text"
                     className="input"
-                    placeholder="John Doe"
+                    placeholder="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
@@ -70,7 +70,7 @@ const FormAddUser = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="field">
                 <div className="control">
                   <button type="submit" className="button px-6 mt-6 is-success">

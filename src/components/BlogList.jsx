@@ -5,29 +5,30 @@ import axios from "axios";
 
 function BlogList() {
   const [blogs, setBlogs] = useState([
-    {
-      id: 1,
-      Nama: "Boba Masa Kini",
-      Deskripsi:
-        "Tren minuman boba dewasa ini menjadi daya tarik tersendiri bagi banyak orang, khususnya kaum milenial. Boba atau bubble yang lazimnya dijadikan topping buat minuman seperti milk tea, thai tea, coklat, dan lainnya, bahkan kini sudah jadi gaya hidup bagi kaum muda di manapun berada.",
-      img: "https://images.unsplash.com/photo-1592318730259-6f18a6ba1c29?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=407&q=80",
-      "blog_category.Nama": "Dessert",
-    },
+    // {
+    //   id: 1,
+    //   Nama: "Boba Masa Kini",
+    //   Deskripsi:
+    //     "Tren minuman boba dewasa ini menjadi daya tarik tersendiri bagi banyak orang, khususnya kaum milenial. Boba atau bubble yang lazimnya dijadikan topping buat minuman seperti milk tea, thai tea, coklat, dan lainnya, bahkan kini sudah jadi gaya hidup bagi kaum muda di manapun berada.",
+    //   img: "https://images.unsplash.com/photo-1592318730259-6f18a6ba1c29?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=407&q=80",
+    //   "blog_category.Nama": "Dessert",
+    // },
   ]);
   const [blogsCategory, setBlogCategoty] = useState([]);
 
   useEffect(() => {
     getBlogs();
-    getBlogCategoty();
+    getBlogCategory();
     // console.log(blogsCategory);
   }, []);
 
   const getBlogs = async () => {
     const response = await axios.get("http://localhost:5000/blog"); // koreksi
     setBlogs(response.data);
+    console.log(response.data);
   };
 
-  const getBlogCategoty = async () => {
+  const getBlogCategory = async () => {
     const response = await axios.get("http://localhost:5000/blog-category");
     setBlogCategoty(response.data);
   };
@@ -62,9 +63,9 @@ function BlogList() {
               <td>{blog.Nama}</td>
               <td>{blog.Deskripsi}</td>
               <td>
-                <img src={blog.img} alt="" />
+                <img src={blog.url} alt="" />
               </td>
-              <td>Dessert</td>
+              <td>{blog.blog_category.Nama}</td>
               {/* <td>{blog.}</td> */}
               <td>
                 <Link

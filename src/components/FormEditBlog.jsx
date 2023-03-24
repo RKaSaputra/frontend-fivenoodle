@@ -7,36 +7,56 @@ const FormEditBlog = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState(0);
+  const [blogCategory, setBlogCategory] = useState([]);
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
-    const getBlogById = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/blog/${id}`); // koreksi
-        setName(response.data.Nama);
-        setDescription(response.data.Deskripsi);
-        setImage(response.data.img);
-        setCategory(response.data.blogCategoryId);
-      } catch (error) {
-        if (error.response) {
-          setMsg(error.response.data.msg);
-        }
+    getBlogCategory();
+  }, []);
+
+  const getBlogCategory = async () => {
+    const response = await axios.get("http://localhost:5000/blog-category");
+    setBlogCategory(response.data);
+  };
+
+  const getBlogById = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/blog/${id}`); // koreksi
+      setName(response.data.Nama);
+      setDescription(response.data.Deskripsi);
+      setImage(response.data.img);
+      setCategory(response.data.blogCategoryId);
+    } catch (error) {
+      if (error.response) {
+        setMsg(error.response.data.msg);
       }
-    };
+    }
+  };
+  useEffect(() => {
     getBlogById();
   }, [id]);
 
   const updateBlog = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("Nama", name);
+    formData.append("Deskripsim", description);
+    formData.append("img", image);
+    formData.append("Kategori", category);
+
     try {
-      await axios.patch(`http://localhost:5000/blog/${id}`, {
+      await axios.patch(`http://localhost:5000/blog/${id}`, formData, {
         // koreksi
-        Nama: name,
-        Deskripsi: description,
-        img: image,
-        Kategori: category,
+        // Nama: name,
+        // Deskripsi: description,
+        // img: image,
+        // Kategori: category,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
       navigate("/blog");
     } catch (error) {
@@ -85,8 +105,8 @@ const FormEditBlog = () => {
                   <input
                     className="input"
                     type="file"
-                    name="resume"
-                    value={image}
+                    name="img"
+                    // value={image}
                     onChange={(e) => setImage(e.target.value)}
                   />
                 </div>
@@ -98,11 +118,16 @@ const FormEditBlog = () => {
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                   >
-                    <option value={1}>Appetizers</option>
+                    {blogCategory.map((b, i) => (
+                      <option key={i} value={b.id}>
+                        {b.Nama}
+                      </option>
+                    ))}
+                    {/* <option value={1}>Appetizers</option>
                     <option value={2}>Dessert</option>
                     <option value={3}>Snack</option>
                     <option value={4}>Main Menu</option>
-                    <option value={5}>Beverage</option>
+                    <option value={5}>Beverage</option> */}
                   </select>
                 </div>
               </div>

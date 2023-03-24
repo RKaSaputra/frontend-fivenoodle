@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const UserList = () => {
-  const [users, setUsers] = useState([{ username: "admin" }]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     getUsers();
