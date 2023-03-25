@@ -3,28 +3,20 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 function MenuList() {
-  const [products, setProducts] = useState([
-    {
-      name: "Noodle",
-      price: 3030,
-      user: {
-        name: "Prabu",
-      },
-    },
-  ]);
+  const [menus, setMenus] = useState([]);
 
   useEffect(() => {
-    getProducts();
+    getMenus();
   }, []);
 
-  const getProducts = async () => {
-    const response = await axios.get("http://localhost:5000/menus"); // koreksi
-    setProducts(response.data);
+  const getMenus = async () => {
+    const response = await axios.get("http://localhost:5000/menu"); // koreksi
+    setMenus(response.data);
   };
 
-  const deleteProduct = async (productId) => {
-    await axios.delete(`http://localhost:5000/menus/${productId}`); // koreksi
-    getProducts();
+  const deleteMenu = async (menuId) => {
+    await axios.delete(`http://localhost:5000/menus/${menuId}`); // koreksi
+    getMenus();
   };
 
   return (
@@ -38,28 +30,37 @@ function MenuList() {
         <thead>
           <tr>
             <th>No</th>
-            <th>Product Name</th>
-            <th>Price</th>
-            <th>Created By</th>
+            <th>Name</th>
+            <th>Calories</th>
+            <th>Rating</th>
+            <th>Nutri Score</th>
+            <th>Image</th>
+            <th>Menu Category</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {products.map((product, index) => (
-            <tr key={product.uuid}>
+          {menus.map((menu, index) => (
+            <tr key={menu.id}>
               <td>{index + 1}</td>
-              <td>{product.name}</td>
-              <td>$ {product.price}</td>
-              <td>{product.user.name}</td>
+              <td>{menu.name}</td>
+              <td>{menu.calories}</td>
+              <td>{menu.rating}</td>
+              <td>{menu.nutriScore}</td>
+              <td>
+                <img style={{ height: "100px" }} src={menu.url} alt="" />
+              </td>
+              <td>{menu.menu_category.name}</td>
+
               <td>
                 <Link
-                  to={`/menus/edit/${product.uuid}`}
+                  to={`/menus/edit/${menu.id}`}
                   className="button is-small is-info mr-3"
                 >
                   Edit
                 </Link>
                 <button
-                  onClick={() => deleteProduct(product.uuid)}
+                  onClick={() => deleteMenu(menu.id)}
                   className="button is-small is-danger"
                 >
                   Delete

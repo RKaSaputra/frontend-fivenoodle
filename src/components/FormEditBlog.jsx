@@ -6,7 +6,7 @@ const FormEditBlog = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-  const [category, setCategory] = useState(0);
+  const [category, setCategory] = useState(1);
   const [blogCategory, setBlogCategory] = useState([]);
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
@@ -14,11 +14,17 @@ const FormEditBlog = () => {
 
   useEffect(() => {
     getBlogCategory();
+    console.log(image);
   }, []);
 
   const getBlogCategory = async () => {
     const response = await axios.get("http://localhost:5000/blog-category");
     setBlogCategory(response.data);
+  };
+
+  const loadImage = (e) => {
+    const image = e.target.files[0];
+    setImage(image);
   };
 
   const getBlogById = async () => {
@@ -102,13 +108,21 @@ const FormEditBlog = () => {
               <div className="field">
                 <label className="label ">Image</label>
                 <div className="control">
-                  <input
-                    className="input"
-                    type="file"
-                    name="img"
-                    // value={image}
-                    onChange={(e) => setImage(e.target.value)}
-                  />
+                  <div className="file">
+                    <label className="file-label">
+                      <input
+                        className="file-input"
+                        type="file"
+                        name="img"
+                        onChange={loadImage}
+                      />
+                      <span className="file-cta">
+                        <span className="file-label">
+                          {image ? `${image}` : `Choose a file...`}
+                        </span>
+                      </span>
+                    </label>
+                  </div>
                 </div>
               </div>
               <div className="field">

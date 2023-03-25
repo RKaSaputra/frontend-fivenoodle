@@ -63,7 +63,7 @@ function BlogList() {
               <td>{blog.Nama}</td>
               <td>{blog.Deskripsi}</td>
               <td>
-                <img src={blog.url} alt="" />
+                <img src={blog.url} alt="" style={{ height: "100px" }} />
               </td>
               <td>{blog.blog_category.Nama}</td>
               {/* <td>{blog.}</td> */}

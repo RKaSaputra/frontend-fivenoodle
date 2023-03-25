@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -8,21 +8,49 @@ const FormAddMenu = () => {
   const [rating, setRating] = useState("");
   const [nutriScore, setNutriScore] = useState("");
   const [img, setImg] = useState("");
+  const [category, setCategory] = useState(1);
+  const [menuCategories, setMenuCategories] = useState([]);
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
+  const loadImage = (e) => {
+    const image = e.target.files[0];
+    setImg(image);
+  };
+
+  useEffect(() => {
+    getMenuCategory();
+    console.log(menuCategories);
+  }, []);
+
+  const getMenuCategory = async () => {
+    const response = await axios.get("http://localhost:5000/category");
+    setMenuCategories(response.data);
+  };
+
   const saveProduct = async (e) => {
     e.preventDefault(); // agar page tidak reload saat submit
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("calories", calories);
+    formData.append("rating", rating);
+    formData.append("nutriScore", nutriScore);
+    formData.append("img", img);
+    formData.append("Kategori", parseInt(category));
+
     try {
-      await axios.post("http://localhost:5000/menus", {
+      await axios.post("http://localhost:5000/menu", formData, {
         // koreksi
-        name,
-        calories,
-        rating,
-        nutriScore,
-        img,
+        // name,
+        // calories,
+        // rating,
+        // nutriScore,
+        // img,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
-      navigate("/products");
+      navigate("/menus");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
@@ -90,13 +118,38 @@ const FormAddMenu = () => {
               <div className="field">
                 <label className="label ">Image</label>
                 <div className="control">
-                  <input
-                    className="input"
-                    type="file"
-                    name="image"
-                    value={img}
-                    onChange={(e) => setImg(e.target.value)}
-                  />
+                  <div className="file">
+                    <label className="file-label">
+                      <input
+                        className="input file-input"
+                        type="file"
+                        name="img"
+                        onChange={loadImage}
+                      />
+                      <span className="file-cta">
+                        <span className="file-label">
+                          {img ? `${img.name}` : `Choose a file...`}
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="field">
+                <label htmlFor="" className="label">
+                  Category
+                </label>
+                <div className="select">
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
+                    {menuCategories.map((menuCategory, i) => (
+                      <option key={i} value={menuCategory.id}>
+                        {menuCategory.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
               <div className="field">

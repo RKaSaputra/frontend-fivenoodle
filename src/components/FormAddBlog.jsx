@@ -11,7 +11,13 @@ const FormAddBlog = () => {
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
+  const loadImage = (e) => {
+    const image = e.target.files[0];
+    setImage(image);
+  };
+
   useEffect(() => {
+    // loadImage();
     getBlogCategory();
   }, []);
 
@@ -21,18 +27,17 @@ const FormAddBlog = () => {
   };
 
   const saveBlog = async (e) => {
-    e.preventDefault(); // agar page tidak reload saat submit
-
+    e.preventDefault();
     const formData = new FormData();
     formData.append("Nama", name);
-    formData.append("Deskripsim", description);
+    formData.append("Deskripsi", description);
     formData.append("img", image);
     formData.append("Kategori", parseInt(category));
 
-    console.log(category);
+    // console.log(category);
 
     try {
-      const res = await axios.post("http://localhost:5000/blog", formData, {
+      await axios.post("http://localhost:5000/blog", formData, {
         // // koreksi
         // Nama: name,
         // Deskripsi: description,
@@ -42,7 +47,6 @@ const FormAddBlog = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res);
       navigate("/blog");
     } catch (error) {
       if (error.response) {
@@ -87,13 +91,21 @@ const FormAddBlog = () => {
               <div className="field">
                 <label className="label ">Image</label>
                 <div className="control">
-                  <input
-                    className="input"
-                    type="file"
-                    name="img"
-                    value={image}
-                    onChange={(e) => setImage(e.target.value)}
-                  />
+                  <div className="file">
+                    <label className="file-label">
+                      <input
+                        className="input file-input"
+                        type="file"
+                        name="img"
+                        onChange={loadImage}
+                      />
+                      <span className="file-cta">
+                        <span className="file-label">
+                          {image ? `${image.name}` : `Choose a file...`}
+                        </span>
+                      </span>
+                    </label>
+                  </div>
                 </div>
               </div>
               <div className="field">
@@ -108,11 +120,6 @@ const FormAddBlog = () => {
                         {b.Nama}
                       </option>
                     ))}
-                    {/* <option value={1}>Appetizers</option>
-                    <option value={2}>Dessert</option>
-                    <option value={3}>Snack</option>
-                    <option value={4}>Main Menu</option>
-                    <option value={5}>Beverage</option> */}
                   </select>
                 </div>
               </div>
