@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Logout, reset } from "../features/authSlice";
 import React from "react";
 import logo from "../logo1.png";
@@ -7,7 +7,7 @@ import logo from "../logo1.png";
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
+  // const { user } = useSelector((state) => state.auth);
 
   const logout = () => {
     dispatch(Logout());

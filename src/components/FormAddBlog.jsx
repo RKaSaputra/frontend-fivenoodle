@@ -34,15 +34,8 @@ const FormAddBlog = () => {
     formData.append("img", image);
     formData.append("Kategori", parseInt(category));
 
-    // console.log(category);
-
     try {
       await axios.post("http://localhost:5000/blog", formData, {
-        // // koreksi
-        // Nama: name,
-        // Deskripsi: description,
-        // img: image,
-        // Kategori: category,
         headers: {
           "Content-Type": "multipart/form-data",
         },

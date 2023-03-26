@@ -7,13 +7,13 @@ import {
   IoLogOut,
   IoNewspaper,
 } from "react-icons/io5";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Logout, reset } from "../features/authSlice";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
+  // const { user } = useSelector((state) => state.auth);
 
   const logout = () => {
     dispatch(Logout());

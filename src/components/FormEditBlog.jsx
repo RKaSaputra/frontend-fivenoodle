@@ -14,7 +14,7 @@ const FormEditBlog = () => {
 
   useEffect(() => {
     getBlogCategory();
-    console.log(image);
+    // console.log(image);
   }, []);
 
   const getBlogCategory = async () => {
@@ -27,20 +27,20 @@ const FormEditBlog = () => {
     setImage(image);
   };
 
-  const getBlogById = async () => {
-    try {
-      const response = await axios.get(`http://localhost:5000/blog/${id}`); // koreksi
-      setName(response.data.Nama);
-      setDescription(response.data.Deskripsi);
-      setImage(response.data.img);
-      setCategory(response.data.blogCategoryId);
-    } catch (error) {
-      if (error.response) {
-        setMsg(error.response.data.msg);
-      }
-    }
-  };
   useEffect(() => {
+    const getBlogById = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/blog/${id}`); // koreksi
+        setName(response.data.Nama);
+        setDescription(response.data.Deskripsi);
+        setImage(response.data.img);
+        setCategory(response.data.blogCategoryId);
+      } catch (error) {
+        if (error.response) {
+          setMsg(error.response.data.msg);
+        }
+      }
+    };
     getBlogById();
   }, [id]);
 

@@ -10,19 +10,19 @@ const FormEditUser = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const getUserById = async () => {
-    try {
-      const response = await axios.get(`http://localhost:5000/users/${id}`);
-      setUsername(response.data.username);
-    } catch (error) {
-      if (error) {
-        setMsg(error.response.data.msg);
-      }
-    }
-  };
   useEffect(() => {
+    const getUserById = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/users/${id}`);
+        setUsername(response.data.username);
+      } catch (error) {
+        if (error) {
+          setMsg(error.response.data.msg);
+        }
+      }
+    };
     getUserById();
-  }, []);
+  }, [id]);
 
   const updateUser = async (e) => {
     e.preventDefault();

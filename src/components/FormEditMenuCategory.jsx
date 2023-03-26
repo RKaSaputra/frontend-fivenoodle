@@ -8,18 +8,19 @@ function FormEditMenuCategory() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const getMenuCategoryById = async () => {
-    try {
-      const response = await axios.get(`http://localhost:5000/category/${id}`);
-      setMenuCategoryName(response.data.name);
-    } catch (error) {
-      setMsg(error.response.data.msg);
-    }
-  };
-
   useEffect(() => {
+    const getMenuCategoryById = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/category/${id}`
+        );
+        setMenuCategoryName(response.data.name);
+      } catch (error) {
+        setMsg(error.response.data.msg);
+      }
+    };
     getMenuCategoryById();
-  }, []);
+  }, [id]);
 
   const updateMenuCategory = async (e) => {
     e.preventDefault();

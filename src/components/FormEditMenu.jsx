@@ -28,22 +28,22 @@ const FormEditMenu = () => {
     setMenuCategories(response.data);
   };
 
-  const getMenuById = async () => {
-    try {
-      const response = await axios.get(`http://localhost:5000/menu/${id}`); // koreksi
-      setName(response.data.name);
-      setCalories(response.data.calories);
-      setRating(response.data.rating);
-      setNutriScore(response.data.nutriScore);
-      setImg(response.data.img);
-      setCategory(response.data.menuCategoryId);
-    } catch (error) {
-      if (error.response) {
-        setMsg(error.response.data.msg);
-      }
-    }
-  };
   useEffect(() => {
+    const getMenuById = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/menu/${id}`); // koreksi
+        setName(response.data.name);
+        setCalories(response.data.calories);
+        setRating(response.data.rating);
+        setNutriScore(response.data.nutriScore);
+        setImg(response.data.img);
+        setCategory(response.data.menuCategoryId);
+      } catch (error) {
+        if (error.response) {
+          setMsg(error.response.data.msg);
+        }
+      }
+    };
     getMenuById();
   }, [id]);
 
