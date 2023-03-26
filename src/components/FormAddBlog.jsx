@@ -57,8 +57,8 @@ const FormAddBlog = () => {
 
   return (
     <div>
-      <h1 className="title">Blogs</h1>
-      <h2 className="subtitle">Add New Blog</h2>
+      <h1 className="title">Blog Category</h1>
+      <h2 className="subtitle">Add New Blog Category</h2>
       <div className="card is-shadowless">
         <div className="card-content">
           <div className="content">
@@ -72,7 +72,7 @@ const FormAddBlog = () => {
                     className="input"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Product Name"
+                    placeholder="Blog Name"
                   />
                 </div>
               </div>

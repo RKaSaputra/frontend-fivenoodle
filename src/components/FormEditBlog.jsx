@@ -89,7 +89,7 @@ const FormEditBlog = () => {
                     className="input"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Product Name"
+                    placeholder="Blog Name"
                   />
                 </div>
               </div>

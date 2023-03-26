@@ -20,7 +20,6 @@ const FormAddMenu = () => {
 
   useEffect(() => {
     getMenuCategory();
-    console.log(menuCategories);
   }, []);
 
   const getMenuCategory = async () => {
@@ -40,12 +39,6 @@ const FormAddMenu = () => {
 
     try {
       await axios.post("http://localhost:5000/menu", formData, {
-        // koreksi
-        // name,
-        // calories,
-        // rating,
-        // nutriScore,
-        // img,
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -75,7 +68,7 @@ const FormAddMenu = () => {
                     className="input"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Product Name"
+                    placeholder="Menu Name"
                   />
                 </div>
               </div>
@@ -136,9 +129,7 @@ const FormAddMenu = () => {
                 </div>
               </div>
               <div className="field">
-                <label htmlFor="" className="label">
-                  Category
-                </label>
+                <label className="label">Category</label>
                 <div className="select">
                   <select
                     value={category}

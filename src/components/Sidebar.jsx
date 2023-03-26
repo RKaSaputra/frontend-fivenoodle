@@ -36,8 +36,18 @@ const Sidebar = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to={"/menu-category"}>
+              <IoPricetag className="mr-2" /> Menu Category
+            </NavLink>
+          </li>
+          <li>
             <NavLink to={"/blog"}>
               <IoNewspaper className="mr-2" /> Blog
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/blog-category"}>
+              <IoNewspaper className="mr-2" /> Blog Category
             </NavLink>
           </li>
           <li>

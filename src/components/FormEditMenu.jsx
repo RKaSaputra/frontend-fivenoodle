@@ -19,6 +19,15 @@ const FormEditMenu = () => {
     setImg(image);
   };
 
+  useEffect(() => {
+    getMenuCategory();
+  }, []);
+
+  const getMenuCategory = async () => {
+    const response = await axios.get("http://localhost:5000/category");
+    setMenuCategories(response.data);
+  };
+
   const getMenuById = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/menu/${id}`); // koreksi
@@ -27,6 +36,7 @@ const FormEditMenu = () => {
       setRating(response.data.rating);
       setNutriScore(response.data.nutriScore);
       setImg(response.data.img);
+      setCategory(response.data.menuCategoryId);
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
@@ -141,6 +151,21 @@ const FormEditMenu = () => {
                       </span>
                     </label>
                   </div>
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Category</label>
+                <div className="select">
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
+                    {menuCategories.map((menuCategory, i) => (
+                      <option key={i} value={menuCategory.id}>
+                        {menuCategory.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
               <div className="field">

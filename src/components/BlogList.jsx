@@ -1,40 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import logo from "../logo.png";
 import axios from "axios";
 
 function BlogList() {
-  const [blogs, setBlogs] = useState([
-    // {
-    //   id: 1,
-    //   Nama: "Boba Masa Kini",
-    //   Deskripsi:
-    //     "Tren minuman boba dewasa ini menjadi daya tarik tersendiri bagi banyak orang, khususnya kaum milenial. Boba atau bubble yang lazimnya dijadikan topping buat minuman seperti milk tea, thai tea, coklat, dan lainnya, bahkan kini sudah jadi gaya hidup bagi kaum muda di manapun berada.",
-    //   img: "https://images.unsplash.com/photo-1592318730259-6f18a6ba1c29?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=407&q=80",
-    //   "blog_category.Nama": "Dessert",
-    // },
-  ]);
-  const [blogsCategory, setBlogCategoty] = useState([]);
+  const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
     getBlogs();
-    getBlogCategory();
-    // console.log(blogsCategory);
   }, []);
 
   const getBlogs = async () => {
-    const response = await axios.get("http://localhost:5000/blog"); // koreksi
+    const response = await axios.get(`http://localhost:5000/blog`); // koreksi
     setBlogs(response.data);
-    console.log(response.data);
   };
 
-  const getBlogCategory = async () => {
-    const response = await axios.get("http://localhost:5000/blog-category");
-    setBlogCategoty(response.data);
-  };
-
-  const deleteBlog = async (productId) => {
-    await axios.delete(`http://localhost:5000/blog/${productId}`); // koreksi
+  const deleteBlog = async (id) => {
+    await axios.delete(`http://localhost:5000/blog/${id}`); // koreksi
     getBlogs();
   };
 

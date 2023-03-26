@@ -15,7 +15,7 @@ function MenuList() {
   };
 
   const deleteMenu = async (menuId) => {
-    await axios.delete(`http://localhost:5000/menus/${menuId}`); // koreksi
+    await axios.delete(`http://localhost:5000/menu/${menuId}`); // koreksi
     getMenus();
   };
 
@@ -30,7 +30,7 @@ function MenuList() {
         <thead>
           <tr>
             <th>No</th>
-            <th>Name</th>
+            <th>Menu Name</th>
             <th>Calories</th>
             <th>Rating</th>
             <th>Nutri Score</th>

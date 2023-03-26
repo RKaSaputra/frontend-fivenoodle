@@ -15,7 +15,7 @@ const FormEditUser = () => {
       const response = await axios.get(`http://localhost:5000/users/${id}`);
       setUsername(response.data.username);
     } catch (error) {
-      if (error.response) {
+      if (error) {
         setMsg(error.response.data.msg);
       }
     }
