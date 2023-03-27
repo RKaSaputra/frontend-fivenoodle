@@ -14,7 +14,6 @@ const FormEditBlog = () => {
 
   useEffect(() => {
     getBlogCategory();
-    // console.log(image);
   }, []);
 
   const getBlogCategory = async () => {
@@ -118,7 +117,10 @@ const FormEditBlog = () => {
                       />
                       <span className="file-cta">
                         <span className="file-label">
-                          {image ? `${image}` : `Choose a file...`}
+                          {/* {image ? `${image}` : `Choose a file...`} */}
+                          {typeof image === "object"
+                            ? `${image.name}`
+                            : `${image}`}
                         </span>
                       </span>
                     </label>
@@ -137,11 +139,6 @@ const FormEditBlog = () => {
                         {b.Nama}
                       </option>
                     ))}
-                    {/* <option value={1}>Appetizers</option>
-                    <option value={2}>Dessert</option>
-                    <option value={3}>Snack</option>
-                    <option value={4}>Main Menu</option>
-                    <option value={5}>Beverage</option> */}
                   </select>
                 </div>
               </div>

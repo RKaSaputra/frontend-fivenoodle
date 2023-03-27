@@ -70,7 +70,7 @@ const FormEditMenu = () => {
       });
       navigate("/menus");
     } catch (error) {
-      if (error.response) {
+      if (error) {
         setMsg(error.response.data.msg);
       }
     }
@@ -146,7 +146,8 @@ const FormEditMenu = () => {
                       />
                       <span className="file-cta">
                         <span className="file-label">
-                          {img ? `${img}` : `Choose a file...`}
+                          {/* {img ? `${img}` : `Choose a file...`} */}
+                          {typeof img === "object" ? `${img.name}` : `${img}`}
                         </span>
                       </span>
                     </label>
