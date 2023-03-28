@@ -12,7 +12,7 @@ const FormAddBlogCategory = () => {
     const getBlogCategoryById = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/blog-category/${id}`
+          `${process.env.REACT_APP_API_URL}/blog-category/${id}`
         );
         setBlogCategoryName(response.data.Nama);
       } catch (error) {
@@ -25,9 +25,12 @@ const FormAddBlogCategory = () => {
   const updateBlogCategory = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/blog-category/${id}`, {
-        Nama: blogCategoryName,
-      });
+      await axios.patch(
+        `${process.env.REACT_APP_API_URL}/blog-category/${id}`,
+        {
+          Nama: blogCategoryName,
+        }
+      );
       navigate("/blog-category");
     } catch (error) {
       if (error.response) {

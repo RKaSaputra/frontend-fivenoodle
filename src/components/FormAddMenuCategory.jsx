@@ -10,7 +10,7 @@ function FormAddMenuCategory() {
   const saveMenuCategory = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/category`, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/category`, {
         name: menuCategoryName,
       });
       navigate("/menu-category");

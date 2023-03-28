@@ -10,12 +10,14 @@ const BlogCategoryList = () => {
   }, []);
 
   const getBlogCategory = async () => {
-    const response = await axios.get(`http://localhost:5000/blog-category`);
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URL}/blog-category`
+    );
     setBlogCategories(response.data);
   };
 
   const deleteBlogCategory = async (id) => {
-    await axios.delete(`http://localhost:5000/blog-category/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/blog-category/${id}`);
     getBlogCategory();
   };
 

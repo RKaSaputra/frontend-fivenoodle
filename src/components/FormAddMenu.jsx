@@ -23,7 +23,9 @@ const FormAddMenu = () => {
   }, []);
 
   const getMenuCategory = async () => {
-    const response = await axios.get("http://localhost:5000/category");
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URL}/category`
+    );
     setMenuCategories(response.data);
   };
 
@@ -38,7 +40,7 @@ const FormAddMenu = () => {
     formData.append("Kategori", parseInt(category));
 
     try {
-      await axios.post("http://localhost:5000/menu", formData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/menu`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

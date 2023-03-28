@@ -12,7 +12,7 @@ function FormEditMenuCategory() {
     const getMenuCategoryById = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/category/${id}`
+          `${process.env.REACT_APP_API_URL}/category/${id}`
         );
         setMenuCategoryName(response.data.name);
       } catch (error) {
@@ -25,7 +25,7 @@ function FormEditMenuCategory() {
   const updateMenuCategory = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/category/${id}`, {
+      await axios.patch(`${process.env.REACT_APP_API_URL}/category/${id}`, {
         name: menuCategoryName,
       });
       navigate("/menu-category");

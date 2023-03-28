@@ -24,14 +24,18 @@ const FormEditMenu = () => {
   }, []);
 
   const getMenuCategory = async () => {
-    const response = await axios.get("http://localhost:5000/category");
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URL}/category`
+    );
     setMenuCategories(response.data);
   };
 
   useEffect(() => {
     const getMenuById = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/menu/${id}`); // koreksi
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/menu/${id}`
+        ); // koreksi
         setName(response.data.name);
         setCalories(response.data.calories);
         setRating(response.data.rating);
@@ -57,17 +61,21 @@ const FormEditMenu = () => {
     formData.append("img", img);
     formData.append("Kategori", parseInt(category));
     try {
-      await axios.patch(`http://localhost:5000/menu/${id}`, formData, {
-        // koreksi
-        // name,
-        // calories,
-        // rating,
-        // nutriScore,
-        // img,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.patch(
+        `${process.env.REACT_APP_API_URL}/menu/${id}`,
+        formData,
+        {
+          // koreksi
+          // name,
+          // calories,
+          // rating,
+          // nutriScore,
+          // img,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       navigate("/menus");
     } catch (error) {
       if (error) {

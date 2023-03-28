@@ -10,12 +10,12 @@ function BlogList() {
   }, []);
 
   const getBlogs = async () => {
-    const response = await axios.get(`http://localhost:5000/blog`); // koreksi
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/blog`); // koreksi
     setBlogs(response.data);
   };
 
   const deleteBlog = async (id) => {
-    await axios.delete(`http://localhost:5000/blog/${id}`); // koreksi
+    await axios.delete(`${process.env.REACT_APP_API_URL}/blog/${id}`); // koreksi
     getBlogs();
   };
 

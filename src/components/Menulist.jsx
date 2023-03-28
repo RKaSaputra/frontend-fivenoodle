@@ -10,12 +10,12 @@ function MenuList() {
   }, []);
 
   const getMenus = async () => {
-    const response = await axios.get("http://localhost:5000/menu"); // koreksi
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/menu`); // koreksi
     setMenus(response.data);
   };
 
   const deleteMenu = async (menuId) => {
-    await axios.delete(`http://localhost:5000/menu/${menuId}`); // koreksi
+    await axios.delete(`${process.env.REACT_APP_API_URL}/menu/${menuId}`); // koreksi
     getMenus();
   };
 

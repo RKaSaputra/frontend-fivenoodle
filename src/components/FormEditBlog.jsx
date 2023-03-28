@@ -17,7 +17,9 @@ const FormEditBlog = () => {
   }, []);
 
   const getBlogCategory = async () => {
-    const response = await axios.get("http://localhost:5000/blog-category");
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URL}/blog-category`
+    );
     setBlogCategory(response.data);
   };
 
@@ -29,7 +31,9 @@ const FormEditBlog = () => {
   useEffect(() => {
     const getBlogById = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/blog/${id}`); // koreksi
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/blog/${id}`
+        ); // koreksi
         setName(response.data.Nama);
         setDescription(response.data.Deskripsi);
         setImage(response.data.img);

@@ -13,7 +13,9 @@ const FormEditUser = () => {
   useEffect(() => {
     const getUserById = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/users/${id}`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/users/${id}`
+        );
         setUsername(response.data.username);
       } catch (error) {
         if (error) {
@@ -27,7 +29,7 @@ const FormEditUser = () => {
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/users/${id}`, {
+      await axios.patch(`${process.env.REACT_APP_API_URL}/users/${id}`, {
         username,
         password: password,
         confPassword: confPassword,

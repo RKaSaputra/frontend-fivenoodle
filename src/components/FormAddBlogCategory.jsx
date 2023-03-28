@@ -10,7 +10,7 @@ const FormAddBlogCategory = () => {
   const saveBlogCategory = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/blog-category`, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/blog-category`, {
         Nama: blogCategoryName,
       });
       navigate("/blog-category");
