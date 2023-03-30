@@ -12,6 +12,11 @@ const FormEditBlog = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  const loadImage = (e) => {
+    const image = e.target.files[0];
+    setImage(image);
+  };
+
   useEffect(() => {
     getBlogCategory();
   }, []);
@@ -21,11 +26,6 @@ const FormEditBlog = () => {
       `${process.env.REACT_APP_API_URL}/blog-category`
     );
     setBlogCategory(response.data);
-  };
-
-  const loadImage = (e) => {
-    const image = e.target.files[0];
-    setImage(image);
   };
 
   useEffect(() => {
@@ -52,17 +52,12 @@ const FormEditBlog = () => {
 
     const formData = new FormData();
     formData.append("Nama", name);
-    formData.append("Deskripsim", description);
+    formData.append("Deskripsi", description);
     formData.append("img", image);
     formData.append("Kategori", category);
 
     try {
       await axios.patch(`http://localhost:5000/blog/${id}`, formData, {
-        // koreksi
-        // Nama: name,
-        // Deskripsi: description,
-        // img: image,
-        // Kategori: category,
         headers: {
           "Content-Type": "multipart/form-data",
         },
